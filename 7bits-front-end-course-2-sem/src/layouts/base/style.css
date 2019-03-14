@@ -1,0 +1,23 @@
+.main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 10px;
+    margin: 0;
+}
+
+.main__side-bar {
+    box-sizing: border-box;
+    padding: 15px 0 0;
+    max-width: 200px;
+    justify-self: stretch;
+}
+
+.main__content {
+    flex-grow: 1;
+    box-sizing: border-box;
+    padding: 15px 4em 0 10px;
+    background-color: #fff;
+}

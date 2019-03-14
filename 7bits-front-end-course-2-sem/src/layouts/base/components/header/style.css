@@ -1,0 +1,11 @@
+.header {
+    background-color: #96efc0;
+    font-family: Helvetica, sans-serif;
+}
+
+.header__content {
+    box-sizing: border-box;
+    max-width: 960px;
+    margin: 0;
+    padding: 10px 10px 10px 2%;
+}

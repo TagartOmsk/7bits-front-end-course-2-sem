@@ -1,0 +1,22 @@
+.side-bar {
+    width: 100%;
+}
+
+.side-bar__elem {
+    margin: 0 0 2em 0;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.side-bar__link-list {
+    list-style: none;
+}
+
+.side-bar__link {
+    text-decoration: none;
+    color: #979797;
+}
+
+.side-bar__elem:last-child {
+    margin: 0;
+}
