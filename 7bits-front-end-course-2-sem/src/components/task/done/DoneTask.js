@@ -8,7 +8,7 @@ import './style.css';
 export default class DoneTask extends React.Component {
     render() {
         return (
-            <Task title={this.props.title} checkButtonClassName={'checked-button'}/>
+            <Task id={this.props.id} title={this.props.title} checkButtonClassName={'checked-button'}/>
         );
     }
 };

@@ -7,10 +7,11 @@ import './style.css';
 import ManipulateButton from "../../buttons/manipulate/ManipulateButton";
 
 export default class TodoTask extends React.Component {
+
     render() {
         return (
-            <Task title={this.props.title} checkButtonClassName={'unchecked-button'} editButton={
-                <ManipulateButton buttonName={'edit'}/>
+            <Task id={this.props.id} title={this.props.title} checkButtonClassName={'unchecked-button'} editButton={
+                <ManipulateButton id={this.props.id} buttonName={'edit'}/>
             }/>
         );
     }

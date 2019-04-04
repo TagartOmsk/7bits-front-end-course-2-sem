@@ -7,15 +7,16 @@ export default class CheckButton extends React.Component {
 
     render() {
 
-        const { className } = this.props;
+        const {id, className} = this.props;
 
         return (
-            <button className={`check-button${className ? ` ${className}` : ''}`}/>
+            <button onClick={() => alert(id)} className={`check-button${className ? ` ${className}` : ''}`}/>
         )
     };
 };
 
 CheckButton.propTypes = {
+    id: PropTypes.string.isRequired,
     className: PropTypes.string
 };
 

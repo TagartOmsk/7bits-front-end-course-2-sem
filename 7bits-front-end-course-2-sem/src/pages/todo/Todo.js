@@ -8,9 +8,9 @@ import './style.css';
 
 export default class Todo extends React.Component {
   renderList = () => {
-    return list.data.map((item, index) => {
+    return list.data.map((item) => {
       return (
-        <TodoTask id={index} title={item.title} />
+        <TodoTask id={item.id} title={item.title} />
       );
     });
   };

@@ -8,9 +8,9 @@ import './style.css';
 
 export default class Done extends React.Component {
   renderList = () => {
-    return list.data.map((item, index) => {
+    return list.data.map((item) => {
       return (
-        <DoneTask id={index} title={item.title} />
+        <DoneTask id={item.id} title={item.title} />
       );
     });
   };

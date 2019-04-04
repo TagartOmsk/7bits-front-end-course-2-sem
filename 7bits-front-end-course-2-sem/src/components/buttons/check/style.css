@@ -20,4 +20,5 @@
 
 .checked-button {
     background: transparent url("../check/images/done_task_gray.png") no-repeat;
+    pointer-events: none;
 }

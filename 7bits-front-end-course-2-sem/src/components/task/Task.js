@@ -9,17 +9,17 @@ import ManipulateButton from "../buttons/manipulate/ManipulateButton";
 export default class Task extends React.Component {
   render() {
 
-    const {title, checkButtonClassName, editButton} = this.props;
+    const {id, title, checkButtonClassName, editButton} = this.props;
 
     return (
       <article className="task">
         <div className={'check-title-keeper'}>
-            <CheckButton className={checkButtonClassName}/>
+            <CheckButton id={id} className={checkButtonClassName}/>
             <h3 className="task__title">{title}</h3>
         </div>
         <div className={'button-keeper'}>
             {editButton}
-            <ManipulateButton buttonName={'remove'}/>
+            <ManipulateButton id={id} buttonName={'remove'}/>
         </div>
       </article>
     );
@@ -27,6 +27,7 @@ export default class Task extends React.Component {
 };
 
 Task.propTypes = {
+    id: PropTypes.string.isRequired,
     title: PropTypes.string,
     checkButtonClassName: PropTypes.string.isRequired,
     editButton: PropTypes.element
