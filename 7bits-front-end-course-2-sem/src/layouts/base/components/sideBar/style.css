@@ -20,3 +20,30 @@
 .side-bar__elem:last-child {
     margin: 0;
 }
+
+.side-bar__link-todo:before {
+    content: url("./icons/todo_gray.svg");
+}
+
+.side-bar__link-done:before {
+    content: url("./icons/done_gray.svg");
+}
+
+.side-bar__link-done_active:before {
+    content: url("./icons/done_blue.svg");
+}
+
+.side-bar__link-todo_active:before {
+    content: url("./icons/todo_blue.svg");
+}
+
+.side-bar__link:before {
+    position: relative;
+    top: 0.2rem;
+    left: -0.5em;
+}
+
+.side-bar__link_active {
+    color: #78c2f5;
+    font-weight: bolder;
+}

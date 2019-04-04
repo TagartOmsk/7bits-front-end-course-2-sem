@@ -1,0 +1,41 @@
+.task {
+    font-family: Helvetica, sans-serif;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.task:hover {
+    box-shadow: 0 1px 4px #97e3cc;
+    border: 0.25px solid #97e3cc;
+}
+
+.task:hover .manipulate-button{
+    visibility: visible;
+}
+
+.task:last-child {
+    margin-bottom: 0;
+}
+
+.task__title {
+    font-size: 15px;
+    font-weight: lighter;
+    margin: 0;
+}
+
+.button-keeper {
+    display: flex;
+    align-items: center;
+    margin-right: 7%;
+    width: 5%;
+    justify-content: space-between;
+}
+
+.check-title-keeper {
+    display: flex;
+}

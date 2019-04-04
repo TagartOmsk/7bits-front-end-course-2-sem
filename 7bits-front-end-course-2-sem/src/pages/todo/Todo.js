@@ -1,16 +1,16 @@
 import React from 'react';
 
-import Task from '../../components/article/Task';
+import TodoTask from '../../components/task/todo/TodoTask';
 
 import list from './list';
 
 import './style.css';
 
-export default class Home extends React.Component {
+export default class Todo extends React.Component {
   renderList = () => {
     return list.data.map((item, index) => {
       return (
-        <Task key={index} title={item.title} />
+        <TodoTask id={index} title={item.title} />
       );
     });
   };

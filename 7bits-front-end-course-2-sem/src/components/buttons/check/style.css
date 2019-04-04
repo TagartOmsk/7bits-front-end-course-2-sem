@@ -1,0 +1,23 @@
+.check-button {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+
+    cursor: pointer;
+    width: 14px;
+    height: 14px;
+    margin: 0.3em 1em 0 0.5em;
+}
+
+.unchecked-button:hover {
+    background: transparent url("../check/images/O_hover.png") no-repeat;
+}
+
+.unchecked-button {
+    background: transparent url("../check/images/O.png") no-repeat;
+}
+
+.checked-button {
+    background: transparent url("../check/images/done_task_gray.png") no-repeat;
+}

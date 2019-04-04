@@ -1,11 +1,17 @@
 .header {
-    background-color: #96efc0;
+    background: linear-gradient(to right, #96EFC0, #73baff);
     font-family: Helvetica, sans-serif;
 }
 
 .header__content {
     box-sizing: border-box;
-    max-width: 960px;
     margin: 0;
     padding: 10px 10px 10px 2%;
+}
+
+.header__user {
+    float: right;
+    padding-right: 5%;
+    text-decoration: none;
+    color: white;
 }

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <metadata><?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+
+<?xpacket end="w"?></metadata>
+<defs>
+    <style>
+      .cls-1 {
+        fill: #979797;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="Combined_Shape" class="cls-1" d="M78,87A10,10,0,1,1,68,97,10,10,0,0,1,78,87Zm-4.445,9.581V92.556h4.026v4.026H73.556Zm4.026,4.847V97.4H73.556v4.026h4.026Zm4.847,0V97.4H78.4v4.026h4.026Zm0-4.847V92.556H78.4v4.026h4.026Z" transform="translate(-68 -87)"/>
+</svg>
