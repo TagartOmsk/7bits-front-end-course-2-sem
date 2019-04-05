@@ -1,12 +1,14 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+
 import DoneTask from '../../components/task/done/DoneTask';
 
 import list from './list';
 
 import './style.css';
 
-export default class Done extends React.Component {
+class Done extends React.Component {
   renderList = () => {
     return list.data.map((item) => {
       return (
@@ -22,4 +24,8 @@ export default class Done extends React.Component {
       </React.Fragment>
     );
   };
-};
+}
+
+const mapStateToProps = () => ({});
+
+export default connect(mapStateToProps(), null)(Done);

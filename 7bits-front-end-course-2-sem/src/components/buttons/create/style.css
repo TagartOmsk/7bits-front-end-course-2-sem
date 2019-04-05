@@ -1,0 +1,14 @@
+.create-button {
+    background: #50d5ad url("./images/create-btn-icon.png") 10% center no-repeat;
+    width: 130px;
+    height: 30px;
+    border-radius: 15px;
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: 500;
+
+}
+
+.create-button:disabled {
+    background-color: #bdbdbd;
+}

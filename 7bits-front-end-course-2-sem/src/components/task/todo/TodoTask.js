@@ -21,3 +21,8 @@ TodoTask.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired
 };
+
+TodoTask.defaultProps = {
+    id: '',
+    title: 'what'
+};

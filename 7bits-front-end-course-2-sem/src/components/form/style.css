@@ -1,0 +1,9 @@
+.form-field {
+    border: none;
+    border-bottom: 1.3px solid #45d3a8;
+    font-size: 15px;
+}
+
+.form-field::placeholder {
+    color: #939393;
+}
