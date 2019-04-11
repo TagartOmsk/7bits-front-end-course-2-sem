@@ -7,10 +7,10 @@ export default class ManipulateButton extends React.Component {
 
     render() {
 
-        const {id, buttonName} = this.props;
+        const {buttonName} = this.props;
 
         return (
-            <button onClick={() => alert(id)} className={`manipulate-button${buttonName ? ` ${buttonName}-button` : ''}`}/>
+            <button className={`manipulate-button${buttonName ? ` ${buttonName}-button` : ''}`}/>
         )
     };
 

@@ -10,7 +10,7 @@ export default class TodoTask extends React.Component {
 
     render() {
         return (
-            <Task id={this.props.id} title={this.props.title} checkButtonClassName={'unchecked-button'} editButton={
+            <Task onRemove={this.props.onRemove} id={this.props.id} title={this.props.title} checkButtonClassName={'unchecked-button'} editButton={
                 <ManipulateButton id={this.props.id} buttonName={'edit'}/>
             }/>
         );
@@ -19,7 +19,8 @@ export default class TodoTask extends React.Component {
 
 TodoTask.propTypes = {
     id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
+    onRemove: PropTypes.func
 };
 
 TodoTask.defaultProps = {

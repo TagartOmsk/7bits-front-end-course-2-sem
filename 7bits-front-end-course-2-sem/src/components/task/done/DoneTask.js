@@ -8,12 +8,13 @@ import './style.css';
 export default class DoneTask extends React.Component {
     render() {
         return (
-            <Task id={this.props.id} title={this.props.title} checkButtonClassName={'checked-button'}/>
+            <Task onRemove={this.props.onRemove} id={this.props.id} title={this.props.title} checkButtonClassName={'checked-button'}/>
         );
     }
 };
 
 DoneTask.propTypes = {
     id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
+    onRemove: PropTypes.func
 };

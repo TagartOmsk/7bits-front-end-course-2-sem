@@ -9,10 +9,17 @@ import list from './list';
 import './style.css';
 
 class Done extends React.Component {
+
+  onClickRemove = (id) => {
+    this.setState( {
+      itemList: this.state.itemList.filter(item => item.id !== id)
+    })
+  };
+
   renderList = () => {
     return list.data.map((item) => {
       return (
-        <DoneTask id={item.id} title={item.title} />
+        <DoneTask onRemove={this.onClickRemove} id={item.id} title={item.title} />
       );
     });
   };
@@ -28,4 +35,4 @@ class Done extends React.Component {
 
 const mapStateToProps = () => ({});
 
-export default connect(mapStateToProps(), null)(Done);
+export default connect(mapStateToProps, null)(Done);

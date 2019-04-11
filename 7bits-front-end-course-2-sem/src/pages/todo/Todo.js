@@ -19,12 +19,18 @@ class Todo extends React.Component {
       value: '',
       itemList: list.data,
       getId: 0
-    }
+    };
   }
 
   onChange = (event) => {
     this.setState( {
       value: event.target.value
+    })
+  };
+
+  onClickRemove = (id) => {
+    this.setState( {
+      itemList: this.state.itemList.filter(item => item.id !== id)
     })
   };
 
@@ -47,7 +53,7 @@ class Todo extends React.Component {
   renderList = () => {
     return this.state.itemList.map((item) => {
       return (
-        <TodoTask id={item.id} title={item.title} />
+        <TodoTask onRemove={this.onClickRemove} id={item.id} title={item.title} />
       );
     });
   };
@@ -78,4 +84,4 @@ class Todo extends React.Component {
 
 const mapStateToProps = () => ({});
 
-export default connect(mapStateToProps(), null)(Todo);
+export default connect(mapStateToProps, null)(Todo);

@@ -7,9 +7,10 @@ import './style.css';
 import ManipulateButton from "../buttons/manipulate/ManipulateButton";
 
 export default class Task extends React.Component {
+
   render() {
 
-    const {id, title, checkButtonClassName, editButton} = this.props;
+    const {id, title, checkButtonClassName, editButton, onRemove} = this.props;
 
     return (
       <article className="task">
@@ -19,7 +20,7 @@ export default class Task extends React.Component {
         </div>
         <div className={'button-keeper'}>
             {editButton}
-            <ManipulateButton id={id} buttonName={'remove'}/>
+            <ManipulateButton onClick={function() {onRemove(id)}} id={id} buttonName={'remove'}/>
         </div>
       </article>
     );
@@ -30,5 +31,6 @@ Task.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string,
     checkButtonClassName: PropTypes.string.isRequired,
-    editButton: PropTypes.element
+    editButton: PropTypes.element,
+    onRemove: PropTypes.func
 };
