@@ -7,10 +7,10 @@ export default class ManipulateButton extends React.Component {
 
     render() {
 
-        const {buttonName} = this.props;
+        const {buttonName, onClick} = this.props;
 
         return (
-            <button className={`manipulate-button${buttonName ? ` ${buttonName}-button` : ''}`}/>
+            <button onClick={onClick} className={`manipulate-button${buttonName ? ` ${buttonName}-button` : ''}`}/>
         )
     };
 
@@ -18,7 +18,8 @@ export default class ManipulateButton extends React.Component {
 
 ManipulateButton.propTypes = {
   id: PropTypes.string.isRequired,
-  buttonName: PropTypes.string.isRequired
+  buttonName: PropTypes.string.isRequired,
+  onClick: PropTypes.func
 };
 
 ManipulateButton.defaultProps = {
