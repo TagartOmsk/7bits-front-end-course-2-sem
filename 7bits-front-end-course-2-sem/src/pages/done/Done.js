@@ -10,6 +10,16 @@ import './style.css';
 
 class Done extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: '',
+      itemList: list.data,
+      getId: 0
+    };
+  }
+
   onClickRemove = (id) => {
     this.setState( {
       itemList: this.state.itemList.filter(item => item.id !== id)
@@ -17,7 +27,7 @@ class Done extends React.Component {
   };
 
   renderList = () => {
-    return list.data.map((item) => {
+    return this.state.itemList.map((item) => {
       return (
         <DoneTask onRemove={this.onClickRemove} id={item.id} title={item.title} />
       );
