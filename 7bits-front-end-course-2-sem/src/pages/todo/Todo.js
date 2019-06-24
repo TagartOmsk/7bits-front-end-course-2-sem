@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
+import { bindActionCreators } from "redux";
+import getTodoList from '../../actions/taskList/getTodoList'
 
 import TodoTask from '../../components/task/todo/TodoTask';
-
-import list from './list';
 
 import './style.css';
 import FormField from "../../components/form/FormField";
@@ -17,9 +17,12 @@ class Todo extends React.Component {
 
     this.state = {
       value: '',
-      itemList: list.data,
       getId: 0
     };
+  }
+
+  componentDidMount() {
+    this.props.getTodoList();
   }
 
   onChange = (event) => {
@@ -29,31 +32,17 @@ class Todo extends React.Component {
   };
 
   onClickRemove = (id) => {
-    this.setState( {
-      itemList: this.state.itemList.filter(item => item.id !== id)
-    })
+
   };
 
   onSubmit = (event) => {
     event.preventDefault();
-
-    this.setState( {
-      itemList: [
-        {
-          "title": this.state.value,
-          "id": this.state.getId,
-        },
-          ...this.state.itemList
-      ],
-      value: '',
-      getId: this.state.getId + 1
-    })
   };
 
   renderList = () => {
-    return this.state.itemList.map((item) => {
+    return this.props.taskList.map((item) => {
       return (
-        <TodoTask onRemove={this.onClickRemove} id={item.id} title={item.title} />
+        <TodoTask onRemove={this.onClickRemove} id={item.id} title={item.text} />
       );
     });
   };
@@ -82,6 +71,12 @@ class Todo extends React.Component {
   };
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = (state) => ({
+  taskList: state.todoListReducer.taskList
+});
 
-export default connect(mapStateToProps, null)(Todo);
+const mapDispatchToProps = (dispatch) => ({
+  getTodoList: bindActionCreators(getTodoList, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Todo);

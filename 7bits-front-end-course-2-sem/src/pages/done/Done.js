@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
+import { bindActionCreators } from "redux";
+import getDoneList from '../../actions/taskList/getDoneList'
 
 import DoneTask from '../../components/task/done/DoneTask';
-
-import list from './list';
 
 import './style.css';
 
@@ -15,21 +15,22 @@ class Done extends React.Component {
 
     this.state = {
       value: '',
-      itemList: list.data,
       getId: 0
     };
   }
 
+  componentDidMount() {
+    this.props.getDoneList();
+  }
+
   onClickRemove = (id) => {
-    this.setState( {
-      itemList: this.state.itemList.filter(item => item.id !== id)
-    })
+
   };
 
   renderList = () => {
-    return this.state.itemList.map((item) => {
+    return this.props.taskList.map((item) => {
       return (
-        <DoneTask onRemove={this.onClickRemove} id={item.id} title={item.title} />
+        <DoneTask onRemove={this.onClickRemove} id={item.id} title={item.text} />
       );
     });
   };
@@ -43,6 +44,12 @@ class Done extends React.Component {
   };
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = (state) => ({
+  taskList: state.doneListReducer.taskList
+});
 
-export default connect(mapStateToProps, null)(Done);
+const mapDispatchToProps = (dispatch) => ({
+  getDoneList: bindActionCreators(getDoneList, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Done);
