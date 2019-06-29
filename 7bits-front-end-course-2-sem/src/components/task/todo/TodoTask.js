@@ -9,21 +9,28 @@ import ManipulateButton from "../../buttons/manipulate/ManipulateButton";
 export default class TodoTask extends React.Component {
 
     render() {
+        const {id, onRemove, onCheck, textFragment, onEdit, text, editType} = this.props;
+
         return (
-            <Task onRemove={this.props.onRemove} id={this.props.id} title={this.props.title} checkButtonClassName={'unchecked-button'} editButton={
-                <ManipulateButton id={this.props.id} buttonName={'edit'}/>
-            }/>
-        );
+            <Task field={textFragment}
+                  onCheck={onCheck} onRemove={onRemove} id={id}
+                  checkButtonClassName={'unchecked-button'} editButton={
+                <ManipulateButton onClick={function() {onEdit(id, text)}} buttonName={editType}/>
+            }/>);
     }
 };
 
 TodoTask.propTypes = {
     id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    onRemove: PropTypes.func
+    onRemove: PropTypes.func,
+    onCheck: PropTypes.func,
+    textFragment: PropTypes.element,
+    onEdit: PropTypes.func,
+    text: PropTypes.string,
+    editType: PropTypes.string
 };
 
 TodoTask.defaultProps = {
     id: '',
-    title: 'what'
+    text: ''
 };

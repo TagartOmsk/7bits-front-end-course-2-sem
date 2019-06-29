@@ -6,7 +6,7 @@ import SideBar from './components/sideBar/SideBar';
 
 import './style.css';
 
-export default class Base extends React.Component {
+export default class BaseLayout extends React.Component {
   render() {
     return (
       <React.Fragment>
@@ -22,6 +22,6 @@ export default class Base extends React.Component {
   };
 };
 
-Base.propTypes = {
+BaseLayout.propTypes = {
   children: PropTypes.node.isRequired
 };

@@ -10,17 +10,17 @@ export default class Task extends React.Component {
 
   render() {
 
-    const {id, title, checkButtonClassName, editButton, onRemove} = this.props;
+    const {id, checkButtonClassName, editButton, onRemove, onCheck, field} = this.props;
 
     return (
       <article className="task">
         <div className={'check-title-keeper'}>
-            <CheckButton id={id} className={checkButtonClassName}/>
-            <h3 className="task__title">{title}</h3>
+            <CheckButton className={checkButtonClassName} onCheck={function() {onCheck(id)}}/>
+            {field}
         </div>
         <div className={'button-keeper'}>
             {editButton}
-            <ManipulateButton onClick={function() {onRemove(id)}} id={id} buttonName={'remove'}/>
+            <ManipulateButton onClick={function() {onRemove(id)}} buttonName={'remove'}/>
         </div>
       </article>
     );
@@ -29,8 +29,9 @@ export default class Task extends React.Component {
 
 Task.propTypes = {
     id: PropTypes.string.isRequired,
-    title: PropTypes.string,
     checkButtonClassName: PropTypes.string.isRequired,
     editButton: PropTypes.element,
-    onRemove: PropTypes.func
+    field: PropTypes.element,
+    onRemove: PropTypes.func,
+    onCheck: PropTypes.func
 };

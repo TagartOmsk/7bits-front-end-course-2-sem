@@ -2,7 +2,9 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
-import getDoneList from '../../actions/taskList/getDoneList'
+import getDoneList from '../../actions/task/getDoneList'
+import deleteDoneTask from '../../actions/task/deleteDoneTask';
+import whoami from '../../actions/user/whoami';
 
 import DoneTask from '../../components/task/done/DoneTask';
 
@@ -14,21 +16,42 @@ class Done extends React.Component {
     super(props);
 
     this.state = {
-      value: '',
-      getId: 0
+      value: ''
     };
   }
 
   componentDidMount() {
+    if (!this.props.authorized || (this.props.doneListError != null && this.props.doneListError.message === "403")) {
+      this.props.history.replace('/signin');
+    }
+
+    this.props.whoami();
     this.props.getDoneList();
   }
 
-  onClickRemove = (id) => {
+  componentDidUpdate() {
+    if (!this.props.authorized || (this.props.doneListError != null && this.props.doneListError.message === "403")) {
+      this.props.history.replace('/signin');
+    }
+    if (!this.props.isList) {
+      this.props.getDoneList();
+    }
+  }
 
+  onClickRemove = (id) => {
+    this.props.deleteTask(id);
   };
 
   renderList = () => {
-    return this.props.taskList.map((item) => {
+    const taskList = this.props.taskList;
+
+    if (taskList.length === 0) {
+      return (
+          <div className={'background-done'}/>
+      );
+    }
+
+    return taskList.map((item) => {
       return (
         <DoneTask onRemove={this.onClickRemove} id={item.id} title={item.text} />
       );
@@ -45,11 +68,17 @@ class Done extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  taskList: state.doneListReducer.taskList
+  taskList: state.doneListReducer.taskList,
+  authorized: state.userReducer.authorized,
+  doneListError: state.doneListReducer.error,
+  userError: state.userReducer.error,
+  isList: state.doneListReducer.isList
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getDoneList: bindActionCreators(getDoneList, dispatch)
+  getDoneList: bindActionCreators(getDoneList, dispatch),
+  deleteTask: bindActionCreators(deleteDoneTask, dispatch),
+  whoami: bindActionCreators(whoami, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Done);

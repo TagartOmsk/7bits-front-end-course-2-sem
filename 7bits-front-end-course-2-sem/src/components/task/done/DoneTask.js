@@ -8,7 +8,10 @@ import './style.css';
 export default class DoneTask extends React.Component {
     render() {
         return (
-            <Task onRemove={this.props.onRemove} id={this.props.id} title={this.props.title} checkButtonClassName={'checked-button'}/>
+            <Task field={
+                <h3 className="task__title">{this.props.title}</h3>
+            }
+                onCheck={(id) => console.log(id)} onRemove={this.props.onRemove} id={this.props.id} checkButtonClassName={'checked-button'}/>
         );
     }
 };

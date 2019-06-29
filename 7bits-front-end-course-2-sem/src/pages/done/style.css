@@ -1,0 +1,7 @@
+.background-done:before {
+    position: absolute;
+    width: 100vw;
+    content: url('./images/background.png');
+    bottom: 0;
+    margin-left: 25%;
+}

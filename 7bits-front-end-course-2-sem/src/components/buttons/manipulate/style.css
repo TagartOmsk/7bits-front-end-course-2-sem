@@ -14,8 +14,9 @@
     width: 14px;
 }
 
-.edit-button:focus {
+.submit-button {
     background: transparent url("../manipulate/images/baseline-done-24px.png") no-repeat;
+    width: 14px;
 }
 
 .remove-button {

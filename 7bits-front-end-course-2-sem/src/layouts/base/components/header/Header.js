@@ -1,30 +1,34 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from "redux";
 
 import './style.css';
 
 import logo from '../../../../logo.png'
+import whoami from "../../../../actions/user/whoami";
 
-export default class Header extends React.Component {
+class Header extends React.Component {
   render() {
-
-      const {user} = this.props;
 
     return (
       <header className='header'>
         <div className='header__content'>
             <img className='header__logo' alt='logo' src={logo}/>
-            <a href={'/'} className={'header__user'}>{user}</a>
+            <a href={'/'} className={'header__user'}>{this.props.username}</a>
         </div>
       </header>
     );
   };
-};
+}
 
-Header.propTypes = {
-    user: PropTypes.string.isRequired
-};
+const mapStateToProps = (state) => ({
+    username: state.userReducer.username
+});
 
-Header.defaultProps = {
-    user: "Johny"
-};
+const mapDispatchToProps = (dispatch) => ({
+    whoami: bindActionCreators(whoami, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
+

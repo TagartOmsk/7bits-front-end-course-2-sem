@@ -1,24 +1,45 @@
-import * as types from '../actions/taskList/actionTypes';
+import * as types from '../actions/task/actionTypes';
 
 const initialState = {
     taskList: [],
-    error: null
+    error: null,
+    isList: false
 };
 
 export default (state = initialState, action) => {
     switch(action.type) {
-        case types.GET_TASK_LIST_SUCCESS: {
+        case types.GET_DONE_LIST_SUCCESS: {
             return {
                 ...state,
                 taskList: action.taskList,
-                error: null
+                error: null,
+                isList: action.isList
             }
         }
-        case types.GET_TASK_LIST_ERROR: {
+        case types.GET_DONE_LIST_ERROR: {
             return {
                 ...state,
                 taskList: [],
                 error: action.error
+            }
+        }
+        case types.DELETE_DONE_SUCCESS: {
+            return {
+                ...state,
+                error: null,
+                isList: action.isList
+            }
+        }
+        case types.DELETE_DONE_FAIL: {
+            return {
+                ...state,
+                error: action.error
+            }
+        }
+        case types.MARK_TASK_DONE_SUCCESS: {
+            return {
+                ...state,
+                isList: action.isList
             }
         }
         default: {

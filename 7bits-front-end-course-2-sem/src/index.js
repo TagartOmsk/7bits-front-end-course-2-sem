@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { Provider } from 'react-redux';
 
-import Base from './layouts/base/Base';
+import BaseLayout from './layouts/base/BaseLayout';
+import PlainLayout from './layouts/plain/PlainLayout';
 import Todo from './pages/todo/Todo';
 import Done from './pages/done/Done';
+import Login from './pages/login/Login';
 
 import './index.css';
 
@@ -15,10 +17,19 @@ import store from './store/store'
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <Base>
-                <Route exact path='/' component={Todo}/>
-                <Route path='/done' component={Done}/>
-            </Base>
+            <Switch>
+                <Route path='/signin' render={() => (
+                    <PlainLayout>
+                        <Route exact path='/signin' component={Login}/>
+                    </PlainLayout>
+                )}/>
+                <Route path='/' render={() => (
+                    <BaseLayout>
+                        <Route exact path='/' component={Todo}/>
+                        <Route path='/done' component={Done}/>
+                    </BaseLayout>
+                )}/>
+            </Switch>
         </BrowserRouter>
     </Provider>,
 

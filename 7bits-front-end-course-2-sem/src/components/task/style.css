@@ -25,9 +25,11 @@
 }
 
 .task__title {
-    font-size: 15px;
-    font-weight: lighter;
     margin: 0;
+    border: 0 none;
+    font: inherit;
+    caret-color: #97e3cc;
+    width: 100%;
 }
 
 .button-keeper {
@@ -40,4 +42,7 @@
 
 .check-title-keeper {
     display: flex;
+    font-size: 15px;
+    font-weight: lighter;
+    width: 80%;
 }

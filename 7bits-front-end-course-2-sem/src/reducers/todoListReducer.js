@@ -1,24 +1,91 @@
-import * as types from '../actions/taskList/actionTypes';
+import * as types from '../actions/task/actionTypes';
 
 const initialState = {
-    taskList: [],
-    error: null
+    location: null,
+    list: [],
+    error: null,
+    isList: false,
+    id: '',
+    isEditing: false,
+    editText: ''
 };
 
 export default (state = initialState, action) => {
     switch(action.type) {
-        case types.GET_TASK_LIST_SUCCESS: {
+        case types.GET_TODO_LIST_SUCCESS: {
             return {
                 ...state,
-                taskList: action.taskList,
+                isList: action.isList,
+                list: action.list,
                 error: null
             }
         }
-        case types.GET_TASK_LIST_ERROR: {
+        case types.GET_TODO_LIST_ERROR: {
             return {
                 ...state,
-                taskList: [],
+                list: [],
                 error: action.error
+            }
+        }
+        case types.CREATE_TASK_FAIL: {
+            return {
+                ...state,
+                error: action.error
+            }
+        }
+        case types.CREATE_TASK_SUCCESS: {
+            return {
+                ...state,
+                isList: action.isList,
+                location: action.location,
+                error: null
+            }
+        }
+        case types.DELETE_TASK_SUCCESS: {
+            return {
+                ...state,
+                isList: action.isList,
+                error: null
+            }
+        }
+        case types.DELETE_TASK_FAIL: {
+            return {
+                ...state,
+                error: action.error
+            }
+        }
+        case types.MARK_TASK_DONE_SUCCESS: {
+            return {
+                ...state,
+                isList: action.isList
+            }
+        }
+        case types.EDIT_TASK: {
+            return {
+                ...state,
+                isEditing: action.isEditing,
+                id: action.id,
+                editText: action.editText
+            }
+        }
+        case types.SUBMIT_TASK: {
+            return {
+                ...state,
+                isEditing: action.isEditing,
+                id: action.id
+            }
+        }
+        case types.SUBMIT_TASK_FAIL: {
+            return {
+                ...state,
+                error: action.error
+            }
+        }
+        case types.CLEAR_CACHE: {
+            return {
+                ...state,
+                id: action.id,
+                isEditing: action.isEditing
             }
         }
         default: {
