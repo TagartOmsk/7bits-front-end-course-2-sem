@@ -1,0 +1,62 @@
+.sign-in-link::before {
+    content: "Already have an account?";
+    position: absolute;
+    transform: translateY(-50%) translateX(-50%);
+    color: #878787;
+    font-weight: 400;
+    top: -0.5rem;
+    left: 50%;
+}
+
+.agreement-checkbox {
+    font-size: 12px;
+    color: #bdbdbd;
+    font-weight: 400;
+    position: relative;
+    left: 25px;
+    vertical-align: top;
+}
+
+.sign-up__checkbox {
+    position: absolute;
+    display: none;
+    margin: 0;
+    bottom: 46px;
+}
+
+.checkbox::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 1px;
+    border: 2px solid #bdbdbd;
+    position: absolute;
+}
+
+.checkbox_active::before {
+    border: 2px solid #74bbfd;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+.agreement-checkbox_active {
+    color: #353535;
+    pointer-events: all;
+}
+
+.checkbox_checked::before {
+    background: url("./images/baseline-done-24px.png");
+}
+
+.checkbox {
+    pointer-events: none;
+}
+
+.checkbox_active {
+    pointer-events: all;
+}
+
+.login-form__field {
+    margin-bottom: 20px;
+}

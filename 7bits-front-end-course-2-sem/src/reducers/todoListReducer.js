@@ -65,20 +65,25 @@ export default (state = initialState, action) => {
                 ...state,
                 isEditing: action.isEditing,
                 id: action.id,
-                editText: action.editText
+                editText: action.editText,
+                isList: action.isList
             }
         }
         case types.SUBMIT_TASK: {
             return {
                 ...state,
                 isEditing: action.isEditing,
-                id: action.id
+                id: action.id,
+                editText: action.editText,
+                isList: action.isList
             }
         }
         case types.SUBMIT_TASK_FAIL: {
             return {
                 ...state,
-                error: action.error
+                error: action.error,
+                isList: action.isList,
+                isEditing: action.isEditing
             }
         }
         case types.CLEAR_CACHE: {

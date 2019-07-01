@@ -1,24 +1,57 @@
 .login-form {
     display: flex;
     flex-direction: column;
-    width: 25%;
-    position: absolute;
-    top: 40%;
-    transform: translateY(-50%) translateX(-50%);
-    left: 50%;
+    align-self: center;
     justify-content: space-between;
-    height: 20%;
+    flex-basis: 27%;
 }
 
 .login-form__button {
     background: #74bbfd;
     width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.12);
+    height: 40px;
+}
+
+.login-form__button:disabled {
+    background: #bdbdbd;
 }
 
 .login-form__field {
     border-bottom: 1.3px solid #000;
 }
 
+.login-form__field_fail {
+    border-bottom: 2px solid #fd5a6f;
+    color: #fd5a6f;
+}
+
+.login-form__field, .login-form__field_fail {
+    font-size: 17px;
+    font-weight: 400;
+}
+
 .login-form__field::placeholder {
     color: #818181;
+}
+
+.login-form__field-label {
+    font-size: 13px;
+    color: #505050;
+    font-weight: 500;
+}
+
+.login-form__field-label_empty {
+    visibility: hidden;
+}
+
+.sign-up-link::before {
+    content: "Don't have an account?";
+    position: absolute;
+    transform: translateY(-50%) translateX(-50%);
+    color: #878787;
+    font-weight: 400;
+    top: -0.5rem;
+    left: 50%;
 }

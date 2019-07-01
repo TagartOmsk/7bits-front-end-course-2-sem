@@ -5,7 +5,7 @@ import './style.css'
 
 export default class FormField extends React.Component {
     render() {
-        const {value, className, type, name, placeholder, onChange} = this.props;
+        const {value, className, type, name, placeholder, onChange, id} = this.props;
 
         return (
             <input
@@ -15,6 +15,7 @@ export default class FormField extends React.Component {
                 name={name}
                 placeholder={placeholder}
                 onChange={onChange}
+                id={id}
             />
         );
     };
@@ -25,7 +26,8 @@ FormField.defaultProps = {
     type: 'text',
     name: '',
     placeholder: '',
-    onChange: () => {}
+    onChange: () => {},
+    id: ''
 };
 
 FormField.propTypes = {
@@ -34,5 +36,6 @@ FormField.propTypes = {
     type: PropTypes.string,
     name: PropTypes.string,
     placeholder: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    id: PropTypes.string
 };

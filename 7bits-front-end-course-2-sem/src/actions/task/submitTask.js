@@ -11,13 +11,16 @@ export default function submitTask(id, value) {
                     type: types.SUBMIT_TASK,
                     isEditing: false,
                     id: id,
-                    editText: ''
+                    editText: '',
+                    isList: true
                 });
             })
             .catch(error => {
                 dispatch({
                     type: types.SUBMIT_TASK_FAIL,
                     error: error,
+                    isList: false,
+                    isEditing: false,
                     text: value
                 });
             })

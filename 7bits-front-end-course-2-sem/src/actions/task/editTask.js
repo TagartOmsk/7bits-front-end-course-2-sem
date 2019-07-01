@@ -6,7 +6,8 @@ export default function editTask(id, text) {
             type: types.EDIT_TASK,
             isEditing: true,
             id: id,
-            editText: text
+            editText: text,
+            isList: false
         });
     }
 }

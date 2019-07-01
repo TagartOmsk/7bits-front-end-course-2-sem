@@ -9,6 +9,7 @@ import PlainLayout from './layouts/plain/PlainLayout';
 import Todo from './pages/todo/Todo';
 import Done from './pages/done/Done';
 import Login from './pages/login/Login';
+import Signup from './pages/signup/Signup';
 
 import './index.css';
 
@@ -21,6 +22,11 @@ ReactDOM.render(
                 <Route path='/signin' render={() => (
                     <PlainLayout>
                         <Route exact path='/signin' component={Login}/>
+                    </PlainLayout>
+                )}/>
+                <Route path='/signup' render={() => (
+                    <PlainLayout>
+                        <Route exact path='/signup' component={Signup}/>
                     </PlainLayout>
                 )}/>
                 <Route path='/' render={() => (

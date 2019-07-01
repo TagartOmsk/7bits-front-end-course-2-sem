@@ -48,7 +48,7 @@ class Todo extends React.Component {
       this.props.clearCache();
       this.props.history.replace('/signin');
     }
-    if (!this.props.isList) {
+    if (!this.props.isList || (this.props.toDoListError != null && this.props.toDoListError.message === "400")) {
       this.props.getTodoList();
     }
   }
@@ -117,11 +117,19 @@ class Todo extends React.Component {
               } text={this.state.editValue} onCheck={this.onCheck} onRemove={this.onClickRemove} id={item.id} onEdit={this.onTaskSubmit} editType={'submit'}/>
           );
         } else {
-          return (
-              <TodoTask textFragment={
-                <h3 className="task__title">{this.state.editValue}</h3>
-              } text={this.state.editValue} onCheck={this.onCheck} onRemove={this.onClickRemove} id={item.id} onEdit={this.onTaskEdit} editType={'edit'}/>
-          );
+          if (this.props.editText !== '') {
+            return (
+                <TodoTask textFragment={
+                  <h3 className="task__title">{this.props.editText}</h3>
+                } text={this.props.editText} onCheck={this.onCheck} onRemove={this.onClickRemove} id={item.id} onEdit={this.onTaskEdit} editType={'edit'}/>
+            );
+          } else {
+            return (
+                <TodoTask textFragment={
+                  <h3 className="task__title">{this.state.editValue}</h3>
+                } text={this.state.editValue} onCheck={this.onCheck} onRemove={this.onClickRemove} id={item.id} onEdit={this.onTaskEdit} editType={'edit'}/>
+            );
+          }
         }
       } else {
         return (

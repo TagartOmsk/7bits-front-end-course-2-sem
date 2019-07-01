@@ -1,3 +1,30 @@
-.main__content {
+.plain-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.another-page {
+    text-align: center;
+    font-size: 13px;
+    color: #626262;
+    font-weight: 500;
+    flex-basis: 5%;
     position: relative;
+    margin-top: 5vh;
+    flex-grow: 1;
+}
+
+.footer {
+    flex-basis: 29vh;
+}
+
+.plain__logo {
+    background: url('./images/logo.png') no-repeat center bottom;
+    flex-basis: 32%;
+    flex-grow: 1;
+}
+
+.plain {
+    flex-basis: 71vh;
 }
