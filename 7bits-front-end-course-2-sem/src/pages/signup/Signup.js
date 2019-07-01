@@ -8,6 +8,7 @@ import './style.css';
 import FormField from "../../components/form/FormField";
 import CreateButton from "../../components/buttons/create/CreateButton";
 import signUp from "../../actions/user/signUp";
+import {I18n} from "react-redux-i18n";
 
 class Signup extends React.Component {
 
@@ -80,21 +81,21 @@ class Signup extends React.Component {
                     className='login-form'
                     onSubmit={this.handleSubmit}
                 >
-                    <label htmlFor={'login'} className={`login-form__field-label${checkUser() ? '_empty' : ''}`}>E-mail</label>
+                    <label htmlFor={'login'} className={`login-form__field-label${checkUser() ? '_empty' : ''}`}>{I18n.t('sign-in/up.e-mail')}</label>
                     <FormField
                         className={(check()) ? 'login-form__field_fail' : 'login-form__field'}
                         name='login'
                         id={'login'}
-                        placeholder='E-mail'
+                        placeholder={I18n.t('sign-in/up.e-mail')}
                         value={this.state.user}
                         onChange={this.onChangeUser}
                     />
-                    <label htmlFor={'password'} className={`login-form__field-label${checkPassword() ? '_empty' : ''}`}>Password</label>
+                    <label htmlFor={'password'} className={`login-form__field-label${checkPassword() ? '_empty' : ''}`}>{I18n.t('sign-in/up.password')}</label>
                     <FormField
                         className={(check()) ? 'login-form__field_fail' : 'login-form__field'}
                         name='password'
                         id={'password'}
-                        placeholder='Password'
+                        placeholder={I18n.t('sign-in/up.password')}
                         type='password'
                         value={this.state.password}
                         onChange={this.onChangePassword}
@@ -118,16 +119,16 @@ class Signup extends React.Component {
                                }${
                                    !checkBoth() ? ' agreement-checkbox_active' : ''}`
                                }
-                        >I agree to processing of personal data</label>
+                        >{I18n.t('sign-up.agreement-text')}</label>
                     </div>
                     <CreateButton
                         className='login-form__button'
-                        value='Sign up'
+                        value={I18n.t('sign-up.submit-button')}
                         disabled={checkBoth() || !this.state.checked}
                         type='submit'
                     />
                 </form>
-                <Link to="/signin" className={'another-page sign-in-link'}>Log in</Link>
+                <Link to="/signin" className={'another-page sign-in-link'}>{I18n.t('sign-up.redirect')}</Link>
             </React.Fragment>
         );
     };

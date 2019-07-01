@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
+import { I18n } from 'react-redux-i18n';
 
 import './style.css';
 import FormField from "../../components/form/FormField";
@@ -70,31 +71,35 @@ class Login extends React.Component {
                    className='login-form'
                    onSubmit={this.handleSubmit}
                >
-                   <label htmlFor={'login'} className={`login-form__field-label${this.state.user === '' ? '_empty' : ''}`}>E-mail</label>
+                   <label htmlFor={'login'} className={`login-form__field-label${this.state.user === '' ? '_empty' : ''}`}>
+                       {I18n.t('sign-in/up.e-mail')}
+                   </label>
                    <FormField
                        className={(check()) ? 'login-form__field_fail' : 'login-form__field'}
                        name='login'
-                       placeholder='E-mail'
+                       placeholder={I18n.t('sign-in/up.e-mail')}
                        value={this.state.user}
                        onChange={this.onChangeUser}
                    />
-                   <label htmlFor={'password'} className={`login-form__field-label${this.state.password === '' ? '_empty' : ''}`}>Password</label>
+                   <label htmlFor={'password'} className={`login-form__field-label${this.state.password === '' ? '_empty' : ''}`}>
+                       {I18n.t('sign-in/up.password')}
+                   </label>
                    <FormField
                        className={(check()) ? 'login-form__field_fail' : 'login-form__field'}
                        name='password'
-                       placeholder='Password'
+                       placeholder={I18n.t('sign-in/up.password')}
                        type='password'
                        value={this.state.password}
                        onChange={this.onChangePassword}
                    />
                    <CreateButton
                        className='login-form__button'
-                       value='Log in'
+                       value={I18n.t('sign-in.submit-button')}
                        disabled={!this.state.user || !this.state.password}
                        type='submit'
                    />
                </form>
-               <Link to="/signup" className={'another-page sign-up-link'}>Sign up</Link>
+               <Link to="/signup" className={'another-page sign-up-link'}>{I18n.t('sign-in.redirect')}</Link>
            </React.Fragment>
        );
     };

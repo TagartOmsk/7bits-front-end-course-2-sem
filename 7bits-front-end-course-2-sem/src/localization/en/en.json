@@ -1,0 +1,21 @@
+{
+  "sign-in/up": {
+    "e-mail": "E-mail",
+    "password": "Password"
+  },
+  "sign-in": {
+    "submit-button": "Log in",
+    "redirect": "Sign up",
+    "redirect-hint": "Don't have an account?"
+  },
+  "sign-up": {
+    "submit-button": "Sign up",
+    "redirect": "Log in",
+    "redirect-hint": "Already have an account?",
+    "agreement-text": "I agree to processing of personal data"
+  },
+  "sidebar": {
+    "todo": "To Do",
+    "done": "Done"
+  }
+}

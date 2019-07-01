@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { I18n } from 'react-redux-i18n';
 
 import './style.css';
 
@@ -18,7 +19,7 @@ export default class SideBar extends React.Component {
                       className={'side-bar__link side-bar__link-todo'}
                       activeClassName={'side-bar__link_active side-bar__link-todo_active'}
                   >
-                      To Do
+                      {I18n.t('sidebar.todo')}
                   </NavLink>
               </li>
               <li className='side-bar__elem'>
@@ -27,7 +28,7 @@ export default class SideBar extends React.Component {
                       className={'side-bar__link side-bar__link-done'}
                       activeClassName={'side-bar__link_active side-bar__link-done_active'}
                   >
-                      Done
+                      {I18n.t('sidebar.done')}
                   </NavLink>
               </li>
           </ul>
