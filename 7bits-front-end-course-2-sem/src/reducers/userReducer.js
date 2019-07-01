@@ -3,7 +3,8 @@ import * as types from '../actions/user/actionTypes';
 const initialState = {
     authorized: !!localStorage.getItem('jwt'),
     error: null,
-    username: 'Johny'
+    username: 'Johny',
+    signedUp: false
 };
 
 export default (state = initialState, action) => {
@@ -39,13 +40,20 @@ export default (state = initialState, action) => {
         case types.SIGN_UP_SUCCESS: {
             return {
                 ...state,
-                error: null
+                error: null,
+                signedUp: true
             }
         }
         case types.SIGN_UP_FAIL: {
             return {
                 ...state,
                 error: action.error
+            }
+        }
+        case types.SIGN_IN_REDIRECT: {
+            return {
+                ...state,
+                signedUp: false
             }
         }
         default: {

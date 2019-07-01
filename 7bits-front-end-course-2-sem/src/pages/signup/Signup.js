@@ -8,7 +8,8 @@ import './style.css';
 import FormField from "../../components/form/FormField";
 import CreateButton from "../../components/buttons/create/CreateButton";
 import signUp from "../../actions/user/signUp";
-import {I18n} from "react-redux-i18n";
+import signInRedirect from "../../actions/user/signInRedirect";
+import { I18n } from "react-redux-i18n";
 
 class Signup extends React.Component {
 
@@ -52,6 +53,10 @@ class Signup extends React.Component {
     componentDidUpdate() {
         if (this.props.authorized) {
             this.props.history.replace('/');
+        }
+        if (this.props.signedUp) {
+            this.props.signInRedirect();
+            this.props.history.replace('/signin');
         }
     }
 
@@ -136,11 +141,13 @@ class Signup extends React.Component {
 
 const mapStateToProps = (state) => ({
     authorized: state.userReducer.authorized,
-    signUpError: state.userReducer.error
+    signUpError: state.userReducer.error,
+    signedUp: state.userReducer.signedUp
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    signUp: bindActionCreators(signUp, dispatch)
+    signUp: bindActionCreators(signUp, dispatch),
+    signInRedirect: bindActionCreators(signInRedirect, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);
