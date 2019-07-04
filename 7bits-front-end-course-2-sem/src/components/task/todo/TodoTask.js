@@ -18,7 +18,7 @@ export default class TodoTask extends React.Component {
                 <ManipulateButton onClick={function() {onEdit(id, text)}} buttonName={editType}/>
             }/>);
     }
-};
+}
 
 TodoTask.propTypes = {
     id: PropTypes.string.isRequired,

@@ -14,7 +14,7 @@ export default class DoneTask extends React.Component {
                 onCheck={(id) => console.log(id)} onRemove={this.props.onRemove} id={this.props.id} checkButtonClassName={'checked-button'}/>
         );
     }
-};
+}
 
 DoneTask.propTypes = {
     id: PropTypes.string.isRequired,

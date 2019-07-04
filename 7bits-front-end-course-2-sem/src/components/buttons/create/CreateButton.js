@@ -12,8 +12,8 @@ export default class CreateButton extends React.Component {
         return (
             <button type={type} disabled={disabled} className={`create-button${className ? ` ${className}` : ''}`}>{value}</button>
         )
-    };
-};
+    }
+}
 
 CreateButton.propTypes = {
     className: PropTypes.string,

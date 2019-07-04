@@ -56,6 +56,12 @@ export default (state = initialState, action) => {
                 signedUp: false
             }
         }
+        case types.FLUSH_ERROR: {
+            return {
+                ...state,
+                error: action.error
+            }
+        }
         default: {
             return state;
         }

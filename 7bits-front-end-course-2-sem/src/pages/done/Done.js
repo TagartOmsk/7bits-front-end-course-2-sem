@@ -9,6 +9,7 @@ import whoami from '../../actions/user/whoami';
 import DoneTask from '../../components/task/done/DoneTask';
 
 import './style.css';
+import BaseLayout from "../../layouts/base/BaseLayout";
 
 class Done extends React.Component {
 
@@ -60,11 +61,11 @@ class Done extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <BaseLayout type={'done'}>
         {this.renderList()}
-      </React.Fragment>
+      </BaseLayout>
     );
-  };
+  }
 }
 
 const mapStateToProps = (state) => ({

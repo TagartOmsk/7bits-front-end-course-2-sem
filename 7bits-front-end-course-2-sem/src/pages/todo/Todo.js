@@ -18,6 +18,7 @@ import editTask from '../../actions/task/editTask';
 import submitTask from '../../actions/task/submitTask';
 import clearCache from '../../actions/task/clearCache';
 import submitTaskWithoutPatch from "../../actions/task/submitTaskWithoutPatch";
+import BaseLayout from "../../layouts/base/BaseLayout";
 
 class Todo extends React.Component {
 
@@ -103,9 +104,7 @@ class Todo extends React.Component {
     const taskList = this.props.taskList;
 
     if (taskList.length === 0) {
-      return (
-          <div className={'background-todo'}/>
-      );
+      return;
     }
 
     return taskList.map((item) => {
@@ -142,8 +141,12 @@ class Todo extends React.Component {
   };
 
   render() {
+    let type = 'todo';
+    if (this.props.taskList.length !== 0) {
+      type = '';
+    }
     return (
-      <React.Fragment>
+      <BaseLayout type={type}>
         <form
         className={'form'}
         onSubmit={this.onSubmit}
@@ -160,9 +163,9 @@ class Todo extends React.Component {
           />
         </form>
         {this.renderList()}
-      </React.Fragment>
+      </BaseLayout>
     );
-  };
+  }
 }
 
 const mapStateToProps = (state) => ({

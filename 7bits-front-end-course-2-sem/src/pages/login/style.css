@@ -2,8 +2,11 @@
     display: flex;
     flex-direction: column;
     align-self: center;
+    width: 23%;
+    margin-left: 3%;
+    flex-basis: 23%;
+    flex-grow: 3;
     justify-content: space-between;
-    flex-basis: 27%;
 }
 
 .login-form__button {
@@ -12,6 +15,11 @@
     border-radius: 20px;
     box-shadow: 0 0 2px rgba(0,0,0,0.12);
     height: 40px;
+    border: none;
+    font-size: 17px;
+    color: #ffffff;
+    font-weight: 400;
+    text-align: center;
 }
 
 .login-form__button:disabled {
@@ -19,21 +27,24 @@
 }
 
 .login-form__field {
-    border-bottom: 1.3px solid #000;
+    border-bottom: 1px solid #626262;
 }
 
 .login-form__field_fail {
-    border-bottom: 2px solid #fd5a6f;
+    border-bottom: 1px solid #fd5a6f;
     color: #fd5a6f;
 }
 
 .login-form__field, .login-form__field_fail {
     font-size: 17px;
     font-weight: 400;
+    margin-top: -3px;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .login-form__field::placeholder {
-    color: #818181;
+    color: #626262;
 }
 
 .login-form__field-label {
@@ -52,6 +63,18 @@
     transform: translateY(-50%) translateX(-50%);
     color: #878787;
     font-weight: 400;
-    top: -0.5rem;
+    top: -1rem;
     left: 50%;
+    width: 400%;
+}
+
+.login-form__field-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 2;
+}
+
+.no-checkbox {
+    visibility: hidden;
 }

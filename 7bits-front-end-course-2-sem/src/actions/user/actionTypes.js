@@ -5,3 +5,4 @@ export const AUTHENTICATE_FAIL = 'AUTHENTICATE_FAIL';
 export const SIGN_UP_FAIL = 'SIGN_UP_FAIL';
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
 export const SIGN_IN_REDIRECT = 'SIGN_IN_REDIRECT';
+export const FLUSH_ERROR = 'FLUSH_ERROR';

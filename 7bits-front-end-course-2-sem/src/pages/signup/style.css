@@ -4,8 +4,9 @@
     transform: translateY(-50%) translateX(-50%);
     color: #878787;
     font-weight: 400;
-    top: -0.5rem;
+    top: -1rem;
     left: 50%;
+    width: 600%;
 }
 
 .agreement-checkbox {
@@ -13,8 +14,9 @@
     color: #bdbdbd;
     font-weight: 400;
     position: relative;
-    left: 25px;
+    left: 24px;
     vertical-align: top;
+    top: -4px;
 }
 
 .sign-up__checkbox {
@@ -27,11 +29,13 @@
 .checkbox::before {
     content: "";
     display: inline-block;
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
     border-radius: 1px;
     border: 2px solid #bdbdbd;
     position: absolute;
+    margin-left: 2px;
+    margin-top: 1px;
 }
 
 .checkbox_active::before {
@@ -46,11 +50,12 @@
 }
 
 .checkbox_checked::before {
-    background: url("./images/baseline-done-24px.png");
+    background: url("./images/baseline-done-24px.png") -2px 10px;
 }
 
 .checkbox {
     pointer-events: none;
+    flex-grow: 3;
 }
 
 .checkbox_active {

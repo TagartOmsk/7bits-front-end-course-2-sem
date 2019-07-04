@@ -30,10 +30,10 @@ ReactDOM.render(
                     </PlainLayout>
                 )}/>
                 <Route path='/' render={() => (
-                    <BaseLayout>
+                    <React.Fragment>
                         <Route exact path='/' component={Todo}/>
                         <Route path='/done' component={Done}/>
-                    </BaseLayout>
+                    </React.Fragment>
                 )}/>
             </Switch>
         </BrowserRouter>

@@ -35,14 +35,16 @@
 .button-keeper {
     display: flex;
     align-items: center;
-    margin-right: 7%;
-    width: 5%;
     justify-content: space-between;
+    margin-right: 4%;
+    flex-grow: 2;
 }
 
 .check-title-keeper {
     display: flex;
     font-size: 15px;
     font-weight: lighter;
-    width: 80%;
+    flex-grow: 1.5;
+    flex-shrink: 5;
+    flex-basis: 90%;
 }

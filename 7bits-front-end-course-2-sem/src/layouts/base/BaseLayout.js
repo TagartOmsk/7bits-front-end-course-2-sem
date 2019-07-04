@@ -11,7 +11,7 @@ export default class BaseLayout extends React.Component {
     return (
       <React.Fragment>
         <Header />
-        <main className='main'>
+        <main className={`main ${this.props.type}`}>
           <SideBar className='main__side-bar'/>
           <section className='main__content'>
             {this.props.children}
@@ -19,9 +19,10 @@ export default class BaseLayout extends React.Component {
         </main>
       </React.Fragment>
     );
-  };
-};
+  }
+}
 
 BaseLayout.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  type: PropTypes.string
 };

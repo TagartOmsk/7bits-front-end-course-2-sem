@@ -18,8 +18,8 @@ export default class PlainLayout extends React.Component {
                 <Footer/>
             </React.Fragment>
         );
-    };
-};
+    }
+}
 
 PlainLayout.propTypes = {
     children: PropTypes.node.isRequired

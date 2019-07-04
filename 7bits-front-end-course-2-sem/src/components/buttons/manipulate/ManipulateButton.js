@@ -12,9 +12,9 @@ export default class ManipulateButton extends React.Component {
         return (
             <button onClick={() => onClick()} className={`manipulate-button${buttonName ? ` ${buttonName}-button` : ''}`}/>
         )
-    };
+    }
 
-};
+}
 
 ManipulateButton.propTypes = {
   buttonName: PropTypes.string.isRequired,

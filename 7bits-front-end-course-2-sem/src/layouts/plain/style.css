@@ -9,6 +9,12 @@
     font-size: 13px;
     color: #626262;
     font-weight: 500;
+    top: 24px;
+    left: 50%;
+    position: relative;
+}
+
+.link-wrapper {
     flex-basis: 5%;
     position: relative;
     margin-top: 5vh;
@@ -20,9 +26,9 @@
 }
 
 .plain__logo {
-    background: url('./images/logo.png') no-repeat center bottom;
-    flex-basis: 32%;
-    flex-grow: 1;
+    background: url('./images/logo.png') no-repeat 51.6% 73%;
+    flex-basis: 23%;
+    flex-grow: 1.7;
 }
 
 .plain {

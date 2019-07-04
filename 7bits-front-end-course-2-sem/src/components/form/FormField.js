@@ -18,8 +18,8 @@ export default class FormField extends React.Component {
                 id={id}
             />
         );
-    };
-};
+    }
+}
 
 FormField.defaultProps = {
     className: '',

@@ -19,7 +19,7 @@ class Header extends React.Component {
         </div>
       </header>
     );
-  };
+  }
 }
 
 const mapStateToProps = (state) => ({

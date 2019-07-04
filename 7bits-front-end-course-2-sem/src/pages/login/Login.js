@@ -9,6 +9,7 @@ import './style.css';
 import FormField from "../../components/form/FormField";
 import CreateButton from "../../components/buttons/create/CreateButton";
 import signIn from "../../actions/user/signIn";
+import flushError from "../../actions/user/flushError";
 
 class Login extends React.Component {
 
@@ -43,6 +44,9 @@ class Login extends React.Component {
     }
 
     componentDidUpdate() {
+        if (this.state.user === '' || this.state.password === '') {
+            this.props.flushError();
+        }
         if (this.props.authorized) {
             this.props.history.replace('/');
         }
@@ -71,27 +75,38 @@ class Login extends React.Component {
                    className='login-form'
                    onSubmit={this.handleSubmit}
                >
-                   <label htmlFor={'login'} className={`login-form__field-label${this.state.user === '' ? '_empty' : ''}`}>
-                       {I18n.t('sign-in/up.e-mail')}
-                   </label>
-                   <FormField
-                       className={(check()) ? 'login-form__field_fail' : 'login-form__field'}
-                       name='login'
-                       placeholder={I18n.t('sign-in/up.e-mail')}
-                       value={this.state.user}
-                       onChange={this.onChangeUser}
-                   />
-                   <label htmlFor={'password'} className={`login-form__field-label${this.state.password === '' ? '_empty' : ''}`}>
-                       {I18n.t('sign-in/up.password')}
-                   </label>
-                   <FormField
-                       className={(check()) ? 'login-form__field_fail' : 'login-form__field'}
-                       name='password'
-                       placeholder={I18n.t('sign-in/up.password')}
-                       type='password'
-                       value={this.state.password}
-                       onChange={this.onChangePassword}
-                   />
+                   <div className={'login-form__field-wrapper'}>
+                       <div className={'login-form__field-with-label'}>
+                           <label htmlFor={'login'} className={`login-form__field-label${this.state.user === '' ? '_empty' : ''}`}>
+                               {I18n.t('sign-in/up.e-mail')}
+                           </label>
+                           <FormField
+                               className={(check()) ? 'login-form__field_fail' : 'login-form__field'}
+                               name='login'
+                               placeholder={I18n.t('sign-in/up.e-mail')}
+                               value={this.state.user}
+                               onChange={this.onChangeUser}
+                           />
+                       </div>
+                       <div className={'login-form__field-with-label'}>
+                           <label htmlFor={'password'} className={`login-form__field-label${this.state.password === '' ? '_empty' : ''}`}>
+                               {I18n.t('sign-in/up.password')}
+                           </label>
+                           <FormField
+                               className={(check()) ? 'login-form__field_fail' : 'login-form__field'}
+                               name='password'
+                               placeholder={I18n.t('sign-in/up.password')}
+                               type='password'
+                               value={this.state.password}
+                               onChange={this.onChangePassword}
+                           />
+                       </div>
+                   </div>
+                   <div className={'checkbox no-checkbox'}>
+                       <label
+                           className={`agreement-checkbox`}
+                       >{I18n.t('sign-up.agreement-text')}</label>
+                   </div>
                    <CreateButton
                        className='login-form__button'
                        value={I18n.t('sign-in.submit-button')}
@@ -99,10 +114,12 @@ class Login extends React.Component {
                        type='submit'
                    />
                </form>
-               <Link to="/signup" className={'another-page sign-up-link'}>{I18n.t('sign-in.redirect')}</Link>
+               <div className={'link-wrapper'}>
+                   <Link to="/signup" onClick={this.props.flushError} className={'another-page sign-up-link'}>{I18n.t('sign-in.redirect')}</Link>
+               </div>
            </React.Fragment>
        );
-    };
+    }
 }
 
 const mapStateToProps = (state) => ({
@@ -111,7 +128,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-   login: bindActionCreators(signIn, dispatch)
+   login: bindActionCreators(signIn, dispatch),
+    flushError: bindActionCreators(flushError, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,11 +1,4 @@
-.background-todo:before {
-    position: absolute;
-    width: 100vw;
-    content: url("./images/background.png");
-    top: 70px;
-    left: -200px;
-}
-
-.background-todo {
-    position: relative;
+.todo {
+    background: 10% 30% no-repeat url("./images/background.png");
+    background-size: contain;
 }
