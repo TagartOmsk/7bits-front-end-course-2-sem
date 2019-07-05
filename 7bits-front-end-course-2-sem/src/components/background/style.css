@@ -1,0 +1,10 @@
+.mountains {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background: url("../background/icons/mountains.png") no-repeat bottom;
+    background-size: 41%;
+    background-position-x: 62%;
+    height: 100%;
+    z-index: 1;
+}

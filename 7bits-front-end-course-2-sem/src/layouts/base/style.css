@@ -13,10 +13,12 @@
     padding: 15px 0 0;
     max-width: 200px;
     justify-self: stretch;
+    z-index: 2;
 }
 
 .main__content {
     flex-grow: 1;
     box-sizing: border-box;
     padding: 15px 4em 0 10px;
+    z-index: 2;
 }

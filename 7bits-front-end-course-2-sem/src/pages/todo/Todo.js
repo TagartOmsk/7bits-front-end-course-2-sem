@@ -18,7 +18,7 @@ import editTask from '../../actions/task/editTask';
 import submitTask from '../../actions/task/submitTask';
 import clearCache from '../../actions/task/clearCache';
 import submitTaskWithoutPatch from "../../actions/task/submitTaskWithoutPatch";
-import BaseLayout from "../../layouts/base/BaseLayout";
+import Background from "../../components/background/Background";
 
 class Todo extends React.Component {
 
@@ -104,66 +104,86 @@ class Todo extends React.Component {
     const taskList = this.props.taskList;
 
     if (taskList.length === 0) {
-      return;
+      return <React.Fragment>
+        <section className='main__content'>
+          <form
+              className={'form'}
+              onSubmit={this.onSubmit}
+          >
+            <FormField
+                value={this.state.value}
+                placeholder={'Type your new task'}
+                onChange={this.onChange}
+            />
+            <CreateButton
+                type={'submit'}
+                value={'Create'}
+                disabled={!this.state.value}
+            />
+          </form>
+        </section>
+        <Background>
+          <div className={'todo__empty-text'}>{`You do not have any tasks in «To Do».\nBut you can create them right here!`}</div>
+          <div className={'todo__monkey'}/>
+        </Background>
+      </React.Fragment>;
     }
 
-    return taskList.map((item) => {
-      if (item.id === this.props.editId) {
-        if (this.props.isEditing) {
-          return (
-              <TodoTask textFragment={
-                <input type={'text'} value={this.state.editValue} className="task__title" onChange={this.onTaskChange}/>
-              } text={this.state.editValue} onCheck={this.onCheck} onRemove={this.onClickRemove} id={item.id} onEdit={this.onTaskSubmit} editType={'submit'}/>
-          );
-        } else {
-          if (this.props.editText !== '') {
-            return (
-                <TodoTask textFragment={
-                  <h3 className="task__title">{this.props.editText}</h3>
-                } text={this.props.editText} onCheck={this.onCheck} onRemove={this.onClickRemove} id={item.id} onEdit={this.onTaskEdit} editType={'edit'}/>
-            );
-          } else {
-            return (
-                <TodoTask textFragment={
-                  <h3 className="task__title">{this.state.editValue}</h3>
-                } text={this.state.editValue} onCheck={this.onCheck} onRemove={this.onClickRemove} id={item.id} onEdit={this.onTaskEdit} editType={'edit'}/>
-            );
-          }
-        }
-      } else {
-        return (
-            <TodoTask textFragment={
-              <h3 className="task__title">{item.text}</h3>
-            } text={item.text} onCheck={this.onCheck} onRemove={this.onClickRemove} id={item.id} onEdit={this.onTaskEdit} editType={'edit'}/>
-        );
-      }
-    });
-  };
-
-  render() {
-    let type = 'todo';
-    if (this.props.taskList.length !== 0) {
-      type = '';
-    }
-    return (
-      <BaseLayout type={type}>
-        <form
-        className={'form'}
-        onSubmit={this.onSubmit}
-        >
-          <FormField
+    return <section className='main__content'>
+      <form
+          className={'form'}
+          onSubmit={this.onSubmit}
+      >
+        <FormField
             value={this.state.value}
             placeholder={'Type your new task'}
             onChange={this.onChange}
-          />
-          <CreateButton
+        />
+        <CreateButton
             type={'submit'}
             value={'Create'}
             disabled={!this.state.value}
-          />
-        </form>
+        />
+      </form>{
+      taskList.map((item) => {
+        if (item.id === this.props.editId) {
+          if (this.props.isEditing) {
+            return (
+                <TodoTask textFragment={
+                  <input type={'text'} value={this.state.editValue} className="task__title" onChange={this.onTaskChange}/>
+                } text={this.state.editValue} onCheck={this.onCheck} onRemove={this.onClickRemove} id={item.id} onEdit={this.onTaskSubmit} editType={'submit'}/>
+            );
+          } else {
+            if (this.props.editText !== '') {
+              return (
+                  <TodoTask textFragment={
+                    <h3 className="task__title">{this.props.editText}</h3>
+                  } text={this.props.editText} onCheck={this.onCheck} onRemove={this.onClickRemove} id={item.id} onEdit={this.onTaskEdit} editType={'edit'}/>
+              );
+            } else {
+              return (
+                  <TodoTask textFragment={
+                    <h3 className="task__title">{this.state.editValue}</h3>
+                  } text={this.state.editValue} onCheck={this.onCheck} onRemove={this.onClickRemove} id={item.id} onEdit={this.onTaskEdit} editType={'edit'}/>
+              );
+            }
+          }
+        } else {
+          return (
+              <TodoTask textFragment={
+                <h3 className="task__title">{item.text}</h3>
+              } text={item.text} onCheck={this.onCheck} onRemove={this.onClickRemove} id={item.id} onEdit={this.onTaskEdit} editType={'edit'}/>
+          );
+        }
+      })
+    }</section>;
+  };
+
+  render() {
+    return (
+      <React.Fragment>
         {this.renderList()}
-      </BaseLayout>
+      </React.Fragment>
     );
   }
 }

@@ -29,11 +29,15 @@ ReactDOM.render(
                         <Route exact path='/signup' component={Signup}/>
                     </PlainLayout>
                 )}/>
+                <Route path='/done' render={() => (
+                    <BaseLayout>
+                        <Route exact path='/done' component={Done}/>
+                    </BaseLayout>
+                )}/>
                 <Route path='/' render={() => (
-                    <React.Fragment>
+                    <BaseLayout>
                         <Route exact path='/' component={Todo}/>
-                        <Route path='/done' component={Done}/>
-                    </React.Fragment>
+                    </BaseLayout>
                 )}/>
             </Switch>
         </BrowserRouter>

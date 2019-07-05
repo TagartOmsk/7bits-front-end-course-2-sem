@@ -3,6 +3,7 @@
     border-bottom: 1.3px solid #45d3a8;
     font-size: 15px;
     vertical-align: bottom;
+    width: 40%;
 }
 
 .form-field::placeholder {
