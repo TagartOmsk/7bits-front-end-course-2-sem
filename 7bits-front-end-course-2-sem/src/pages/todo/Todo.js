@@ -1,15 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 
 import TodoTask from '../../components/task/todo/TodoTask';
 
-import './style.css';
 import FormField from "../../components/form/FormField";
 import CreateButton from "../../components/buttons/create/CreateButton";
-
 import getTodoList from '../../actions/task/getTodoList';
+
 import addTodoTask from "../../actions/task/addTodoTask";
 import deleteTask from "../../actions/task/deleteTask";
 import whoami from '../../actions/user/whoami';
@@ -19,6 +19,7 @@ import submitTask from '../../actions/task/submitTask';
 import clearCache from '../../actions/task/clearCache';
 import submitTaskWithoutPatch from "../../actions/task/submitTaskWithoutPatch";
 import Background from "../../components/background/Background";
+import './style.css';
 
 class Todo extends React.Component {
 
@@ -100,11 +101,49 @@ class Todo extends React.Component {
     this.props.markDone(id);
   };
 
+  renderBackground = () => {
+    return <Background>
+      <div className={'todo__empty-text'}>{`You do not have any tasks in «To Do».\nBut you can create them right here!`}</div>
+      <div className={'todo__monkey'}/>
+    </Background>
+  };
+
   renderList = () => {
     const taskList = this.props.taskList;
 
-    if (taskList.length === 0) {
-      return <React.Fragment>
+    return <div className={'task-list'}>
+      {
+        taskList.map((item) => {
+
+          let value = item.text;
+
+          if (item.id === this.props.editId) {
+
+            value = (this.props.editText !== '' && !this.props.isEditing) ? this.props.editText : this.state.editValue;
+
+            if (this.props.isEditing) {
+              return (
+                  <TodoTask textFragment={
+                    <input type={'text'} value={value} className="task__title" onChange={this.onTaskChange}/>
+                  } text={value} onCheck={this.onCheck} onRemove={this.onClickRemove} id={item.id} onEdit={this.onTaskSubmit} editType={'submit'}/>
+              );
+            }
+          }
+          return (
+              <TodoTask key textFragment={
+                <h3 className="task__title">{value}</h3>
+              } text={value} onCheck={this.onCheck} onRemove={this.onClickRemove} id={item.id} onEdit={this.onTaskEdit} editType={'edit'}/>
+          );
+        })
+      }
+    </div>;
+  };
+
+  render() {
+    const renderFragment = this.props.taskList.length ? this.renderList : this.renderBackground;
+
+    return (
+      <React.Fragment>
         <section className='main__content'>
           <form
               className={'form'}
@@ -121,68 +160,9 @@ class Todo extends React.Component {
                 disabled={!this.state.value}
             />
           </form>
+          {renderFragment === this.renderList ? renderFragment() : ''}
         </section>
-        <Background>
-          <div className={'todo__empty-text'}>{`You do not have any tasks in «To Do».\nBut you can create them right here!`}</div>
-          <div className={'todo__monkey'}/>
-        </Background>
-      </React.Fragment>;
-    }
-
-    return <section className='main__content'>
-      <form
-          className={'form'}
-          onSubmit={this.onSubmit}
-      >
-        <FormField
-            value={this.state.value}
-            placeholder={'Type your new task'}
-            onChange={this.onChange}
-        />
-        <CreateButton
-            type={'submit'}
-            value={'Create'}
-            disabled={!this.state.value}
-        />
-      </form>{
-      taskList.map((item) => {
-        if (item.id === this.props.editId) {
-          if (this.props.isEditing) {
-            return (
-                <TodoTask textFragment={
-                  <input type={'text'} value={this.state.editValue} className="task__title" onChange={this.onTaskChange}/>
-                } text={this.state.editValue} onCheck={this.onCheck} onRemove={this.onClickRemove} id={item.id} onEdit={this.onTaskSubmit} editType={'submit'}/>
-            );
-          } else {
-            if (this.props.editText !== '') {
-              return (
-                  <TodoTask textFragment={
-                    <h3 className="task__title">{this.props.editText}</h3>
-                  } text={this.props.editText} onCheck={this.onCheck} onRemove={this.onClickRemove} id={item.id} onEdit={this.onTaskEdit} editType={'edit'}/>
-              );
-            } else {
-              return (
-                  <TodoTask textFragment={
-                    <h3 className="task__title">{this.state.editValue}</h3>
-                  } text={this.state.editValue} onCheck={this.onCheck} onRemove={this.onClickRemove} id={item.id} onEdit={this.onTaskEdit} editType={'edit'}/>
-              );
-            }
-          }
-        } else {
-          return (
-              <TodoTask textFragment={
-                <h3 className="task__title">{item.text}</h3>
-              } text={item.text} onCheck={this.onCheck} onRemove={this.onClickRemove} id={item.id} onEdit={this.onTaskEdit} editType={'edit'}/>
-          );
-        }
-      })
-    }</section>;
-  };
-
-  render() {
-    return (
-      <React.Fragment>
-        {this.renderList()}
+        {renderFragment === this.renderBackground ? renderFragment() : ''}
       </React.Fragment>
     );
   }
@@ -211,5 +191,25 @@ const mapDispatchToProps = (dispatch) => ({
   clearCache: bindActionCreators(clearCache, dispatch),
   submitTaskNoPatch: bindActionCreators(submitTaskWithoutPatch, dispatch)
 });
+
+Todo.propTypes = {
+  authorized: PropTypes.bool,
+  toDoListError: PropTypes.objectOf(Error),
+  history: PropTypes.object,
+  whoami: PropTypes.func,
+  getTodoList: PropTypes.func,
+  isList: PropTypes.bool,
+  deleteTask: PropTypes.func,
+  taskList: PropTypes.array,
+  clearCache: PropTypes.func,
+  editTask: PropTypes.func,
+  editText: PropTypes.string,
+  submitTask: PropTypes.func,
+  submitTaskNoPatch: PropTypes.func,
+  addTask: PropTypes.func,
+  markDone: PropTypes.func,
+  editId: PropTypes.string,
+  isEditing: PropTypes.bool
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todo);

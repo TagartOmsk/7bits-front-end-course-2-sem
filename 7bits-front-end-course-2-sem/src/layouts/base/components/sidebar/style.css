@@ -3,9 +3,11 @@
 }
 
 .side-bar__elem {
-    margin: 0 0 2em 0;
+    margin: 0 30px 2em;
     font-size: 18px;
-    font-weight: normal;
+    font-weight: 400;
+    position: relative;
+    text-align: start;
 }
 
 .side-bar__link-list {
@@ -18,29 +20,32 @@
 }
 
 .side-bar__elem:last-child {
-    margin: 0;
+    margin-bottom: 0;
 }
 
 .side-bar__link-todo:before {
-    content: url("icons/todo_gray.svg");
+    background: url("./icons/sprite.png") -25px 0;
 }
 
 .side-bar__link-done:before {
-    content: url("icons/done_gray.svg");
+    background: url("./icons/sprite.png") -25px -25px;
 }
 
 .side-bar__link-done_active:before {
-    content: url("icons/done_blue.svg");
+    background: url("./icons/sprite.png") 0 0;
 }
 
 .side-bar__link-todo_active:before {
-    content: url("icons/todo_blue.svg");
+    background: url("./icons/sprite.png") 0 -25px;
 }
 
 .side-bar__link:before {
-    position: relative;
-    top: 0.2rem;
-    left: -0.5em;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    content: " ";
+    left: -27px;
+    top: 0;
 }
 
 .side-bar__link_active {

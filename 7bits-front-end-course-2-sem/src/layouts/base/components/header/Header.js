@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
@@ -29,6 +30,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     whoami: bindActionCreators(whoami, dispatch)
 });
+
+Header.propTypes = {
+  username: PropTypes.string
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
 

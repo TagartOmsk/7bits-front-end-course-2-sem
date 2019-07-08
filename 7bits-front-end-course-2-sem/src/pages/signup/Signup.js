@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
@@ -77,13 +78,13 @@ class Signup extends React.Component {
         this.props.signUp(username, password);
     };
 
+    check = () => this.state.expectError && this.props.signUpError != null;
+
+    checkUser = () => this.state.user === '';
+    checkPassword = () => this.state.password === '';
+    checkBoth = () => this.checkUser() || this.checkPassword();
+
     render() {
-        const check = () => this.state.expectError && this.props.signUpError != null;
-
-        const checkUser = () => this.state.user === '';
-        const checkPassword = () => this.state.password === '';
-        const checkBoth = () => checkUser() || checkPassword();
-
         return (
             <React.Fragment>
                 <form
@@ -92,20 +93,20 @@ class Signup extends React.Component {
                 >
                     <div className={'login-form__field-wrapper'}>
                         <div className={'login-form__field-with-label'}>
-                            <label htmlFor={'login'} className={`login-form__field-label${checkUser() ? '_empty' : ''}`}>{I18n.t('sign-in/up.e-mail')}</label>
+                            <label htmlFor={'login'} className={`login-form__field-label${this.checkUser() ? '_empty' : ''}`}>{I18n.t('sign-in/up.e-mail')}</label>
                             <FormField
-                                className={(check()) ? 'login-form__field_fail' : 'login-form__field'}
+                                className={(this.check()) ? 'login-form__field_fail' : 'login-form__field'}
                                 name='login'
-                                id={'login'}
+                                id='login'
                                 placeholder={I18n.t('sign-in/up.e-mail')}
                                 value={this.state.user}
                                 onChange={this.onChangeUser}
                             />
                         </div>
                         <div className={'login-form__field-with-label'}>
-                            <label htmlFor={'password'} className={`login-form__field-label${checkPassword() ? '_empty' : ''}`}>{I18n.t('sign-in/up.password')}</label>
+                            <label htmlFor={'password'} className={`login-form__field-label${this.checkPassword() ? '_empty' : ''}`}>{I18n.t('sign-in/up.password')}</label>
                             <FormField
-                                className={(check()) ? 'login-form__field_fail' : 'login-form__field'}
+                                className={(this.check()) ? 'login-form__field_fail' : 'login-form__field'}
                                 name='password'
                                 id={'password'}
                                 placeholder={I18n.t('sign-in/up.password')}
@@ -115,7 +116,7 @@ class Signup extends React.Component {
                             />
                         </div>
                     </div>
-                    <div className={`checkbox${!checkBoth() ? ' checkbox_active' : ''}${
+                    <div className={`checkbox${!this.checkBoth() ? ' checkbox_active' : ''}${
                         this.state.checked ? ' checkbox_checked' : ''
                         }`}
                     onClick={this.onCheck}>
@@ -124,14 +125,14 @@ class Signup extends React.Component {
                                className={`agreement-checkbox${
                                    this.state.checked ? ' agreement-checkbox_checked' : ''
                                }${
-                                   !checkBoth() ? ' agreement-checkbox_active' : ''}`
+                                   !this.checkBoth() ? ' agreement-checkbox_active' : ''}`
                                }
                         >{I18n.t('sign-up.agreement-text')}</label>
                     </div>
                     <CreateButton
                         className='login-form__button'
                         value={I18n.t('sign-up.submit-button')}
-                        disabled={checkBoth() || !this.state.checked}
+                        disabled={this.checkBoth() || !this.state.checked}
                         type='submit'
                     />
                 </form>
@@ -154,5 +155,15 @@ const mapDispatchToProps = (dispatch) => ({
     signInRedirect: bindActionCreators(signInRedirect, dispatch),
     flushError: bindActionCreators(flushError, dispatch)
 });
+
+Signup.propTypes = {
+    authorized: PropTypes.bool,
+    flushError: PropTypes.objectOf(Error),
+    history: PropTypes.object,
+    signedUp: PropTypes.bool,
+    signInRedirect: PropTypes.func,
+    signUp: PropTypes.func,
+    signUpError: PropTypes.objectOf(Error)
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

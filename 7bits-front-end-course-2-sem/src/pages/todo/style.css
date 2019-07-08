@@ -19,3 +19,11 @@
     top: 40%;
     left: 50%;
 }
+
+.task-list {
+    margin-top: 15px;
+}
+
+.form {
+    display: flex;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
@@ -131,5 +132,13 @@ const mapDispatchToProps = (dispatch) => ({
    login: bindActionCreators(signIn, dispatch),
     flushError: bindActionCreators(flushError, dispatch)
 });
+
+Login.propTypes = {
+    authorized: PropTypes.bool,
+    flushError: PropTypes.objectOf(Error),
+    history: PropTypes.object,
+    login: PropTypes.func,
+    signInError: PropTypes.objectOf(Error)
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

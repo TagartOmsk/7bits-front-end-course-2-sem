@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
+
 import getDoneList from '../../actions/task/getDoneList'
 import deleteDoneTask from '../../actions/task/deleteDoneTask';
 import whoami from '../../actions/user/whoami';
@@ -46,7 +48,7 @@ class Done extends React.Component {
   renderList = () => {
     const taskList = this.props.taskList;
 
-    if (taskList.length === 0) {
+    if (!taskList.length) {
       return <React.Fragment>
         <Background>
           <div className={'done__empty-text'}>{`You have not done anything yet.\nLet's start!`}</div>
@@ -58,7 +60,7 @@ class Done extends React.Component {
     return <section className='main__content'>{
       taskList.map((item) => {
         return (
-            <DoneTask onRemove={this.onClickRemove} id={item.id} title={item.text} />
+            <DoneTask key onRemove={this.onClickRemove} id={item.id} title={item.text} />
         );
       })
     }</section>
@@ -87,4 +89,14 @@ const mapDispatchToProps = (dispatch) => ({
   whoami: bindActionCreators(whoami, dispatch)
 });
 
+Done.propTypes = {
+  authorized: PropTypes.bool,
+  doneListError: PropTypes.objectOf(Error),
+  history: PropTypes.object,
+  whoami: PropTypes.func,
+  getDoneList: PropTypes.func,
+  isList: PropTypes.bool,
+  deleteTask: PropTypes.func,
+  taskList: PropTypes.array
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Done);
